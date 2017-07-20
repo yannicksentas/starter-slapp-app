@@ -91,6 +91,17 @@ slapp.message(/^(thanks|thank you)/i, ['mention', 'direct_message'], (msg) => {
   ])
 })
 
+// Slapping
+slapp.message(/^(slap)/i, ['mention', 'direct_message'], (msg) => {
+  // You can provide a list of responses, and a random one will be chosen
+  // You can also include slack emoji in your responses
+  msg.say([
+    "Auch",
+    'Not so hard!'
+  ])
+})
+
+
 // demonstrate returning an attachment...
 slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
   msg.say({
