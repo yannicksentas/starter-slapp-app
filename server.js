@@ -101,6 +101,27 @@ slapp.message(/^(slap)/i, ['mention', 'direct_message'], (msg) => {
   ])
 })
 
+// Kicking
+slapp.message('kick', (msg) => {
+  msg.say({
+      text: '',
+      attachments: [
+        {
+          text: '',
+          fallback: 'High or Low?',
+          callback_id: 'highlow_callback',
+          actions: [
+            { name: 'answer', text: 'High', type: 'button', value: 'high' },
+            { name: 'answer', text: 'Low',  type: 'button',  value: 'low' }
+          ]
+        }]
+      })
+})
+
+slapp.action('highlow_callback', 'answer', (msg, value) => {
+  msg.respond(msg.body.response_url, `What a nice ${value} kick!`)
+})
+
 
 // demonstrate returning an attachment...
 slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
